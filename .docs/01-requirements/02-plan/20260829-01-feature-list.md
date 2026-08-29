@@ -34,14 +34,14 @@
 | DASH-03 | ตัวกรองช่วงวันที่แบบกำหนดเอง (custom range) | Dashboard ยอดขาย | **Must** | [[../01-spec/20260807-02-dashboard-sales\|Dashboard sales]] — Business Rules ข้อ 3 |
 | DASH-04 | Export ยอดขายเป็น CSV/Excel | Dashboard ยอดขาย | Should | [[../01-spec/20260807-02-dashboard-sales\|Dashboard sales]] — Scope, Business Rules ข้อ 4 |
 | DASH-05 | กำหนดสิทธิ์เข้าถึง dashboard (RBAC) | Dashboard ยอดขาย | **Must** | [[../01-spec/20260807-02-dashboard-sales\|Dashboard sales]] — Business Rules ข้อ 1 |
-| DASH-06 | กราฟ/ชาร์ตประกอบการแสดงผล | Dashboard ยอดขาย | Could | [[../01-spec/20260807-02-dashboard-sales\|Dashboard sales]] — ประเด็นที่ยังไม่ชัดเจน |
+| DASH-06 | กราฟแท่งประกอบยอดขายตามช่วงเวลา | Dashboard ยอดขาย | Should | [[../01-spec/20260807-02-dashboard-sales\|Dashboard sales]] — Scope (ยืนยันเพิ่มเติม 2026-08-29) |
 | AUDIT-01 | บันทึก audit log เหตุการณ์สำคัญ | Audit Log & PDPA | **Must** | [[../01-spec/20260807-03-audit-log-pdpa-compliance\|Audit log/PDPA]] — Business Rules ข้อ 1-2 |
 | AUDIT-02 | Mask ข้อมูลอ่อนไหวใน log | Audit Log & PDPA | **Must** | [[../01-spec/20260807-03-audit-log-pdpa-compliance\|Audit log/PDPA]] — Business Rules ข้อ 3 |
 | AUDIT-03 | Retention policy ของ log (90 วัน) | Audit Log & PDPA | **Must** | [[../01-spec/20260807-03-audit-log-pdpa-compliance\|Audit log/PDPA]] — Business Rules ข้อ 4 |
 | AUDIT-04 | ป้องกันการแก้ไข/ลบ log (log integrity) | Audit Log & PDPA | **Must** | [[../01-spec/20260807-03-audit-log-pdpa-compliance\|Audit log/PDPA]] — Business Rules ข้อ 5-6 |
 | AUDIT-05 | Consent แบบง่ายตอนลงทะเบียนสมาชิก (PDPA) | Audit Log & PDPA | **Must** | [[../01-spec/20260807-03-audit-log-pdpa-compliance\|Audit log/PDPA]] — Business Rules ข้อ 7-8 |
 
-สรุปจำนวน: **Must 11** · **Should 3** · **Could 1** · **Won't 9** (ดูตารางแยกท้ายเอกสาร)
+สรุปจำนวน: **Must 11** · **Should 4** · **Could 0** · **Won't 9** (ดูตารางแยกท้ายเอกสาร)
 
 ---
 
@@ -104,10 +104,11 @@
 **Business rule ที่เกี่ยวข้อง**: "การเข้าถึงหน้า dashboard ต้องจำกัดเฉพาะผู้ใช้ที่มีบทบาท 'เจ้าของร้าน' หรือ 'พนักงานที่ได้รับสิทธิ์ดูรายงาน' เท่านั้น"
 **ประเด็นเปิด**: รายละเอียดการกำหนดสิทธิ์/บทบาทผู้ใช้ (ใครกำหนดสิทธิ์พนักงาน, มีกี่ระดับสิทธิ์) ยังไม่ระบุ
 
-#### DASH-06 — กราฟ/ชาร์ตประกอบการแสดงผล
-**คำอธิบาย**: การแสดงผลข้อมูลยอดขายเป็นกราฟ/ชาร์ตประกอบตัวเลข
-**เหตุผลของ MoSCoW (Could)**: **ไม่ได้อยู่ใน Scope "ทำ" ที่ยืนยันแล้วของสเปค** — หยิบมาจากหัวข้อ "ประเด็นที่ยังไม่ชัดเจน" ของสเปค dashboard ซึ่งเป็นไอเดียเปิดที่ยังไม่ได้ยืนยันว่าจะทำ ใส่ไว้ในลิสต์นี้เพื่อให้เป็น candidate ที่มองเห็นได้ ไม่ใช่ feature ที่ยืนยันแล้ว
-**⚠️ ต้องยืนยันกับผู้ใช้**: feature นี้ยังไม่ผ่านการยืนยัน scope จากผู้ใช้ — ควรถามก่อนว่าจะรวมไว้ในแผนจริงหรือไม่ ถ้าไม่ต้องการให้ตัดออกจากลิสต์นี้ได้ทันที
+#### DASH-06 — กราฟแท่งประกอบยอดขายตามช่วงเวลา
+**คำอธิบาย**: แสดงยอดขายตามช่วงเวลาเป็นกราฟแท่งประกอบตัวเลข/ตาราง เพื่อให้เห็นแนวโน้มได้ง่ายขึ้น
+**เหตุผลของ MoSCoW (Should)**: เดิมเป็น Could เพราะยังไม่ยืนยัน scope — **อัปเดต 2026-08-29**: ผู้ใช้ยืนยันแล้วว่าต้องมีกราฟแท่ง จึงย้ายจากไอเดียเปิดมาเป็น confirmed scope แต่ยังไม่ถึงระดับ Must เพราะ dashboard ส่งมอบคุณค่าหลักได้แล้วด้วย DASH-01 (สรุปยอดขายเป็นตัวเลข/ตาราง) กราฟเป็นการนำเสนอข้อมูลชุดเดียวกันในรูปแบบที่มองง่ายขึ้น ไม่ใช่ข้อมูลใหม่ที่ core flow ขาดไม่ได้
+**Business rule ที่เกี่ยวข้อง**: Scope "ทำ" (เพิ่มเติม 2026-08-29) — "กราฟแท่งประกอบยอดขายตามช่วงเวลา"
+**ประเด็นเปิด**: ชนิดกราฟเพิ่มเติมนอกจากกราฟแท่ง (เช่น pie chart สัดส่วนเมนู) ยังไม่ยืนยัน
 
 ### Epic: Audit Log & PDPA Compliance
 
@@ -172,3 +173,4 @@
 | วันที่ | สาเหตุ | สรุปการแก้ไข |
 |---|---|---|
 | 2026-08-29 | สร้างครั้งแรก | สร้าง Feature List ฉบับแรกจาก backlog + สเปคทั้ง 3 ฉบับที่มีอยู่ ณ ขณะนั้น |
+| 2026-08-29 | [[../01-spec/20260807-02-dashboard-sales\|Dashboard sales]] ยืนยัน scope กราฟแท่งเพิ่มเติม (commit `9fea710`) | ย้าย `DASH-06` จาก Could (ไอเดียเปิด) → Should (confirmed scope), แก้คำอธิบาย/เหตุผล MoSCoW, ปรับสรุปจำนวนเป็น Must 11 / Should 4 / Could 0 / Won't 9 |

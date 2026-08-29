@@ -79,7 +79,8 @@ flowchart TD
     C -- มีสิทธิ์ owner /<br/>staff ที่ได้รับสิทธิ์ --> E[เข้าหน้า Dashboard ยอดขาย]
     E --> F[เลือกช่วงวันที่<br/>custom date range]
     F --> G[ดูสรุปยอดขาย<br/>ตามช่วงเวลา]
-    G --> H[ดูยอดขายแยกตามเมนู /<br/>เมนูขายดี]
+    G --> G2[ดูกราฟแท่งประกอบ<br/>ยอดขายตามช่วงเวลา]
+    G2 --> H[ดูยอดขายแยกตามเมนู /<br/>เมนูขายดี]
     H --> I{ต้องการ Export หรือไม่}
     I -- ต้องการ --> J[กด Export CSV/Excel]
     J --> K[[บันทึก audit log:<br/>data.exported]]
@@ -92,8 +93,9 @@ flowchart TD
 2. **ตรวจสอบสิทธิ์ role (owner / staff ที่ได้รับสิทธิ์)** — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Business Rules ข้อ 1 ("จำกัดเฉพาะผู้ใช้ที่มีบทบาท 'เจ้าของร้าน' หรือ 'พนักงานที่ได้รับสิทธิ์ดูรายงาน'") · Feature: `DASH-05`
 3. **เลือกช่วงวันที่ (custom range)** — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Business Rules ข้อ 3 · Feature: `DASH-03`
 4. **ดูสรุปยอดขายตามช่วงเวลา** — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Business Rules ข้อ 2 (นับเฉพาะออเดอร์ที่ชำระเงินสำเร็จ — เชื่อมกับ `QR-02`) · Feature: `DASH-01`
-5. **ดูยอดขายแยกตามเมนู/เมนูขายดี** — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Scope "ทำ" · Feature: `DASH-02`
-6. **Export CSV/Excel → บันทึก audit log (data.exported)** — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Business Rules ข้อ 4 และ [[../../01-requirements/01-spec/20260807-03-audit-log-pdpa-compliance|Audit log/PDPA]], Business Rules ข้อ 1 · Feature: `DASH-04`, `AUDIT-01`
+5. **ดูกราฟแท่งประกอบยอดขายตามช่วงเวลา** (เพิ่มเข้ามา 2026-08-29) — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Scope "ทำ" (ยืนยันเพิ่มเติม 2026-08-29) · Feature: `DASH-06`
+6. **ดูยอดขายแยกตามเมนู/เมนูขายดี** — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Scope "ทำ" · Feature: `DASH-02`
+7. **Export CSV/Excel → บันทึก audit log (data.exported)** — [[../../01-requirements/01-spec/20260807-02-dashboard-sales|Dashboard sales]], Business Rules ข้อ 4 และ [[../../01-requirements/01-spec/20260807-03-audit-log-pdpa-compliance|Audit log/PDPA]], Business Rules ข้อ 1 · Feature: `DASH-04`, `AUDIT-01`
 
 ---
 
@@ -112,6 +114,7 @@ flowchart TD
 | 3 | ตรวจสอบสิทธิ์เข้า dashboard | Dashboard sales — Business Rules ข้อ 1 | DASH-05 |
 | 3 | เลือกช่วงวันที่ | Dashboard sales — Business Rules ข้อ 3 | DASH-03 |
 | 3 | สรุปยอดขาย | Dashboard sales — Business Rules ข้อ 2 | DASH-01 |
+| 3 | กราฟแท่งประกอบยอดขาย | Dashboard sales — Scope (ยืนยันเพิ่มเติม 2026-08-29) | DASH-06 |
 | 3 | ยอดขายแยกตามเมนู | Dashboard sales — Scope | DASH-02 |
 | 3 | Export + log | Dashboard sales — Business Rules ข้อ 4 / Audit log/PDPA — Business Rules ข้อ 1 | DASH-04, AUDIT-01 |
 
@@ -134,3 +137,4 @@ flowchart TD
 | วันที่ | สาเหตุ | สรุปการแก้ไข |
 |---|---|---|
 | 2026-08-29 | สร้างครั้งแรก | สร้าง User Journey ฉบับแรก 3 journey จากสเปคทั้ง 3 ฉบับที่มีอยู่ ณ ขณะนั้น |
+| 2026-08-29 | [[../../01-requirements/01-spec/20260807-02-dashboard-sales\|Dashboard sales]] ยืนยัน scope กราฟแท่งเพิ่มเติม (commit `9fea710`) | เพิ่ม node "ดูกราฟแท่งประกอบยอดขายตามช่วงเวลา" ใน Journey 3 (ระหว่างขั้นตอนดูสรุปยอดขายกับดูยอดขายแยกตามเมนู) พร้อมอ้างอิง Feature `DASH-06` ที่เพิ่งอัปเดต MoSCoW ใน Feature List |
