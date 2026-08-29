@@ -128,3 +128,9 @@ flowchart TD
 - [[../../01-requirements/01-spec/20260807-01-table-qr-ordering|20260807-01-table-qr-ordering]]
 - [[../../01-requirements/01-spec/20260807-02-dashboard-sales|20260807-02-dashboard-sales]]
 - [[../../01-requirements/01-spec/20260807-03-audit-log-pdpa-compliance|20260807-03-audit-log-pdpa-compliance]]
+
+## ประวัติการแก้ไข
+
+| วันที่ | สาเหตุ | สรุปการแก้ไข |
+|---|---|---|
+| 2026-08-29 | สร้างครั้งแรก | สร้าง User Journey ฉบับแรก 3 journey จากสเปคทั้ง 3 ฉบับที่มีอยู่ ณ ขณะนั้น |
