@@ -3,12 +3,12 @@
 > สร้างเมื่อ 2026-08-29
 > สร้างโดย skill `prototype-builder`
 
-เวอร์ชันนี้เป็น prototype ฉบับแรกของโปรเจกต์ my-coffee-store เริ่มจาก scope **"หน้า Dashboard ดูยอดขาย"** ต่อยอดเพิ่ม **"หน้าสั่งเมนูลูกค้า (QR Ordering)"** และล่าสุดเพิ่ม **"จอ KDS ของบาริสต้า"** เข้ามาในเวอร์ชันเดียวกัน
+เวอร์ชันนี้เป็น prototype ฉบับแรกของโปรเจกต์ my-coffee-store เริ่มจาก scope **"หน้า Dashboard ดูยอดขาย"** ต่อยอดเพิ่ม **"หน้าสั่งเมนูลูกค้า (QR Ordering)"**, **"จอ KDS ของบาริสต้า"** และล่าสุดเพิ่ม **"หน้า Login เข้าสู่ระบบ"** เข้ามาในเวอร์ชันเดียวกัน
 
 ## เอกสารอ้างอิงที่ใช้
 
-- Requirement spec: [[../../../01-requirements/01-spec/20260807-02-dashboard-sales|20260807-02-dashboard-sales]], [[../../../01-requirements/01-spec/20260807-01-table-qr-ordering|20260807-01-table-qr-ordering]]
-- Feature List: [[../../../01-requirements/02-plan/20260829-01-feature-list|20260829-01-feature-list]] (`DASH-01` ถึง `DASH-06`, `QR-01` ถึง `QR-04`, `AUDIT-05`)
+- Requirement spec: [[../../../01-requirements/01-spec/20260807-02-dashboard-sales|20260807-02-dashboard-sales]], [[../../../01-requirements/01-spec/20260807-01-table-qr-ordering|20260807-01-table-qr-ordering]], [[../../../01-requirements/01-spec/20260807-03-audit-log-pdpa-compliance|20260807-03-audit-log-pdpa-compliance]]
+- Feature List: [[../../../01-requirements/02-plan/20260829-01-feature-list|20260829-01-feature-list]] (`DASH-01` ถึง `DASH-06`, `QR-01` ถึง `QR-04`, `AUDIT-01`, `AUDIT-05`)
 - User Journey: [[../20260829-01-user-journeys|20260829-01-user-journeys]] (Journey 1: ลูกค้าสั่งกาแฟผ่าน QR Code, Journey 2: บาริสต้ารับออเดอร์ผ่าน KDS, Journey 3: เจ้าของร้าน/พนักงานดู Dashboard ยอดขาย)
 - Backlog: [[../../../01-requirements/backlog|backlog]]
 
@@ -23,6 +23,7 @@
 | [[sales-dashboard\|หน้า Dashboard ยอดขาย]] | หน้าเดียว ครอบคลุม 2 state (Authorized View / Access Denied View) + sub-state (Export Confirm Modal) | `DASH-01`, `DASH-02`, `DASH-03`, `DASH-04`, `DASH-05`, `DASH-06` |
 | [[customer-menu-page\|หน้าสั่งเมนูลูกค้า (QR Ordering — mobile)]] | 4 state: เมนูหลัก, ตะกร้า/Checkout Drawer, สมัครสมาชิก+Consent, ผลการชำระเงิน (สำเร็จ/ไม่สำเร็จ) | `QR-01`, `QR-02`, `QR-03`, `AUDIT-05` |
 | [[kds-order-screen\|จอ KDS (Kitchen Display System — บาริสต้า)]] | 3 state: Ticket Grid ปกติ, New Order Highlight, Empty State — ระบุประเด็นเปิดเรื่องสถานะออเดอร์หลังบาริสต้าเริ่มทำที่ยังไม่มี requirement รองรับ | `QR-04` |
+| [[login-screen\|หน้า Login เข้าสู่ระบบ (เจ้าของร้าน/พนักงาน)]] | 2 state: Login Form (default), Login Form (error) + ส่วนอธิบาย handoff ไปยัง sales-dashboard.md — ระบุชัดว่าเป็นสมมติฐานชั่วคราว ไม่มี requirement spec เฉพาะรองรับหน้านี้โดยตรง | `AUDIT-01`, `DASH-05` |
 
 ## ประวัติการแก้ไข
 
@@ -31,3 +32,4 @@
 | 2026-08-29 | สร้างครั้งแรก | สร้าง prototype-v1 ฉบับแรกของโปรเจกต์ เฉพาะ scope "หน้า Dashboard ดูยอดขาย" ตามคำขอ user, อ้างอิง design system ที่มีอยู่แล้ว (20260829-02-design-system.md) |
 | 2026-08-29 | ผู้ใช้ขอ "ทำ prototype หน้าสั่งเมนูลูกค้าต่อ" — เลือกเพิ่มไฟล์ในเวอร์ชันเดิม (ไม่สร้าง prototype-v2) เพราะเป็นการเพิ่มหน้าจอใหม่ที่ไม่ทับซ้อน/ไม่กระทบ sales-dashboard.md เดิม | เพิ่มไฟล์ `customer-menu-page.md` (หน้าสั่งเมนูลูกค้า QR Ordering ครอบคลุม `QR-01`~`QR-03`, `AUDIT-05` และ Journey 1) เข้าเวอร์ชันนี้ พร้อมอัปเดตเอกสารอ้างอิง/design system ที่อ้างอิงและรายชื่อหน้าจอด้านบน |
 | 2026-08-29 | ผู้ใช้ขอ "ทำ prototype จอ KDS ต่อ" — เลือกเพิ่มไฟล์ในเวอร์ชันเดิม (ไม่สร้าง prototype-v2) เพราะเป็นหน้าจอใหม่ที่ไม่ทับซ้อนกับ 2 หน้าจอเดิม (ยืนยันแผนแล้วโดยผู้ใช้) | เพิ่มไฟล์ `kds-order-screen.md` (จอ KDS บาริสต้า ครอบคลุม `QR-04` ด้วย 3 state: Ticket Grid ปกติ, New Order Highlight, Empty State และ Journey 2) เข้าเวอร์ชันนี้ พร้อมอัปเดตเอกสารอ้างอิง/design system ที่อ้างอิงและรายชื่อหน้าจอด้านบน |
+| 2026-08-29 | ผู้ใช้ขอ "ทำ prototype หน้า login ต่อ" — พบว่าไม่มี requirement spec เฉพาะรองรับหน้า login โดยตรง จึงถามยืนยันแนวทางก่อน ผู้ใช้เลือกแนวทาง A (login แบบขั้นต่ำสุด username/password + ลืมรหัสผ่าน placeholder ระบุเป็นสมมติฐานชั่วคราว) และเลือกเพิ่มไฟล์ในเวอร์ชันเดิม (ไม่สร้าง prototype-v2) | เพิ่มไฟล์ `login-screen.md` (หน้า Login เข้าสู่ระบบ ครอบคลุม `AUDIT-01`, `DASH-05` ด้วย 2 state: Login Form default, Login Form error + ส่วนอธิบาย handoff ไปยัง sales-dashboard.md) เข้าเวอร์ชันนี้ พร้อมอัปเดตเอกสารอ้างอิง/รายชื่อหน้าจอด้านบน |
